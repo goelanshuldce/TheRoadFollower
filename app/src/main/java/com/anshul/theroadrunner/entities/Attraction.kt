@@ -1,6 +1,9 @@
-package com.anshul.theroadrunner.data
+package com.anshul.theroadrunner.entities
+
+import com.squareup.moshi.JsonClass
 
 
+@JsonClass(generateAdapter = true)
 data class Attraction(
     val description: String = "",
     val facts: List<String> = listOf(),
@@ -15,3 +18,8 @@ data class Attraction(
         val longitude: String = ""
     )
 }
+
+
+data class AttractionsResponse(
+    val attractions: List<Attraction> = listOf()
+)
