@@ -1,5 +1,5 @@
 package com.anshul.theroadrunner.details
 
-import com.anshul.theroadrunner.app.BaseFragment
+import androidx.fragment.app.Fragment
 
-class AttractionDetailFragment : BaseFragment()
+class AttractionDetailFragment : Fragment()

@@ -2,18 +2,29 @@ package com.anshul.theroadrunner.home
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anshul.theroadrunner.entities.Attraction
+import com.anshul.theroadrunner.repository.RawDataRepository
 import kotlinx.coroutines.launch
 
-class HomeFragmentViewModel(application: Application, attractions: List<Attraction>) :
+class HomeFragmentViewModel(application: Application) :
     AndroidViewModel(application) {
 
-    lateinit var attractions: List<Attraction>
+    private val rawDataRepository = RawDataRepository(application.applicationContext)
+
+    private val _attractions = MutableLiveData<List<Attraction>>()
+    val attractions: LiveData<List<Attraction>> get() = _attractions
+
+    private val _navigateToSelectedAttraction = MutableLiveData<Int>()
+    val navigateToSelectedAttraction: LiveData<Int> get() = _navigateToSelectedAttraction
 
     init {
         viewModelScope.launch {
-            this@HomeFragmentViewModel.attractions = attractions
+            _attractions.value = rawDataRepository.fetchAttractionsData()
         }
     }
+
+
 }

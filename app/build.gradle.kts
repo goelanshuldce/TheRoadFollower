@@ -48,6 +48,11 @@ dependencies {
     val navVersion = "2.3.5"
     val picassoVersion = "2.8"
     val moshiVersion = "1.12.0"
+    val lifecycleViewModelVersion = "2.3.1"
+    val lifecycleExtensionVersion = "2.2.0"
+    val versionKotlinCoroutines = "1.4.2"
+
+
 
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -61,9 +66,17 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
-    // Mohi
+    // Moshi
     implementation("com.squareup.moshi:moshi:$moshiVersion")
     implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
+
+    // ViewModel and LiveData (arch components)
+    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleViewModelVersion")
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$versionKotlinCoroutines")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$versionKotlinCoroutines")
 
 
     testImplementation("junit:junit:4.13.2")
