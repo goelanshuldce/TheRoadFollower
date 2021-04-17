@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.anshul.theroadrunner.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -23,9 +24,19 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(HomeFragmentViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.recyclerview.adapter = HomeFragmentAdapter(HomeFragmentAdapter.OnClickListener {
-
-        })
+        binding.recyclerview.adapter =
+            HomeFragmentAdapter(HomeFragmentAdapter.OnClickListener { attractionId ->
+                viewModel.displayAttractionDetails(attractionId)
+            })
+        viewModel.navigateToSelectedAttraction.observe(
+            viewLifecycleOwner,
+            { attractionId ->
+                attractionId?.let {
+                    this.findNavController().navigate(
+                        HomeFragmentDirections.actionHomeFragmentToAttractionDetailFragment(it)
+                    )
+                }
+            })
         return binding.root
     }
 }

@@ -61,6 +61,9 @@ class HomeFragmentAdapter(val onClickListener: OnClickListener) :
      */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val attraction = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(attraction.id)
+        }
         (holder as IAttractionViewHolder).bind(attraction)
     }
 
@@ -69,8 +72,8 @@ class HomeFragmentAdapter(val onClickListener: OnClickListener) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Attraction]
      */
-    class OnClickListener(val clickListener: (attractionId: Int) -> Unit) {
-        fun onClick(attractionId: Int) = clickListener(attractionId)
+    class OnClickListener(val clickListener: (attractionId: String) -> Unit) {
+        fun onClick(attractionId: String) = clickListener(attractionId)
     }
 
     /**

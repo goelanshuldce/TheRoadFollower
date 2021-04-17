@@ -17,8 +17,8 @@ class HomeFragmentViewModel(application: Application) :
     private val _attractions = MutableLiveData<List<Attraction>>()
     val attractions: LiveData<List<Attraction>> get() = _attractions
 
-    private val _navigateToSelectedAttraction = MutableLiveData<Int>()
-    val navigateToSelectedAttraction: LiveData<Int> get() = _navigateToSelectedAttraction
+    private val _navigateToSelectedAttraction = MutableLiveData<String>()
+    val navigateToSelectedAttraction: LiveData<String> get() = _navigateToSelectedAttraction
 
     init {
         viewModelScope.launch {
@@ -26,5 +26,19 @@ class HomeFragmentViewModel(application: Application) :
         }
     }
 
+    /**
+     * When the property is clicked, set the [_navigateToSelectedAttraction] [MutableLiveData]
+     * @param attractionId The [Attraction] that was clicked on.
+     */
+    fun displayAttractionDetails(attractionId: String) {
+        _navigateToSelectedAttraction.value = attractionId
+    }
+
+    /**
+     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
+     */
+    fun displayAttractionDetailsComplete() {
+        _navigateToSelectedAttraction.value = null
+    }
 
 }

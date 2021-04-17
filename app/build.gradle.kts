@@ -51,6 +51,7 @@ dependencies {
     val lifecycleViewModelVersion = "2.3.1"
     val lifecycleExtensionVersion = "2.2.0"
     val versionKotlinCoroutines = "1.4.2"
+    val timberVersion = "4.7.1"
 
 
 
@@ -77,6 +78,9 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$versionKotlinCoroutines")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$versionKotlinCoroutines")
+
+    // Logging
+    implementation("com.jakewharton.timber:timber:$timberVersion")
 
 
     testImplementation("junit:junit:4.13.2")
